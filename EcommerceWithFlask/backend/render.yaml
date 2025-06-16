@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: ecommerce-backend
+    env: python
+    buildCommand: ""
+    startCommand: gunicorn wsgi:app
+    rootDir: EcommerceWithFlask/Backend  # adjust as needed

@@ -4,12 +4,13 @@ from models import db, User, Product
 from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
 from db_ops import register_user, authenticate_user
 from routes.product import product_bp
+import os
 
 app = Flask(__name__)
-CORS(app, resources={r"/*": {"origins": "http://localhost:5173"}})
+CORS(app)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
-app.config['JWT_SECRET_KEY'] = 'super-secret'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('SQLALCHEMY_DATABASE_URI')
+app.config['JWT_SECRET_KEY'] = os.getenv('JWT_SECRET_KEY')
 jwt = JWTManager(app)
 
 db.init_app(app)
@@ -87,13 +88,4 @@ def get_users():
     response.headers['Content-Type'] = 'application/json'
     return response
 
-if __name__ == '__main__':
-   with app.app_context():
-    db.create_all()
-    users = User.query.all()
-    for user in users:
-        print('username ',user.username)
-    # products = Product.query.all()
-    # for product in products:
-    #     print(product.name)
-   app.run(debug=True, port=7777)
+
