@@ -3,7 +3,7 @@
 **/*.pyc
 backend/venv/
 
-*.db
+# *.db
 .env
 
 # Frontend (React)
