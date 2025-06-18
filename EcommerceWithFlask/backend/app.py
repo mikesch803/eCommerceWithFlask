@@ -5,7 +5,9 @@ from flask_jwt_extended import JWTManager, create_access_token, jwt_required, ge
 from db_ops import register_user, authenticate_user
 from routes.product import product_bp
 import os
+from dotenv import load_dotenv
 
+load_dotenv()
 app = Flask(__name__)
 CORS(app)
 

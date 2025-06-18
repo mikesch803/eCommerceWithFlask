@@ -1,8 +1,8 @@
 # Backend (Flask)
 **/__pycache__/
 **/*.pyc
-backend py flask/venv/
-backend py flask/instance/
+backend/venv/
+backend/instance/
 *.db
 .env
 
